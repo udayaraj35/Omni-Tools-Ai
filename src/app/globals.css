@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 188 85% 40%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 259 92% 67%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 188 85% 40%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 240 21% 7%;
+    --foreground: 220 31% 97%;
+    --card: 222 47% 11%;
+    --card-foreground: 220 31% 97%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 220 31% 97%;
+    --primary: 188 85% 53%;
+    --primary-foreground: 227 60% 8%;
+    --secondary: 220 9% 15%;
+    --secondary-foreground: 220 31% 97%;
+    --muted: 215 9% 15%;
+    --muted-foreground: 220 9% 68%;
+    --accent: 259 92% 67%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 188 85% 53%;
+  }
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  min-height: 100vh;
+  background-attachment: fixed;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+  background-image: radial-gradient(at 0% 0%, hsla(188, 85%, 53%, 0.03) 0px, transparent 50%), radial-gradient(at 100% 0%, hsla(259, 92%, 67%, 0.03) 0px, transparent 50%);
+}
+
+.glass-card {
+  @apply bg-card/60 backdrop-blur-xl border border-border shadow-2xl;
+}
+
+.text-glow-primary {
+  text-shadow: 0 0 15px hsla(188, 85%, 53%, 0.3);
+}
+
+.animated-border-card {
+  position: relative;
+  padding: 1px;
+  overflow: hidden;
+  border-radius: 1rem;
+  @apply bg-border/50;
+}
+
+.gradient-button-gold {
+  background: linear-gradient(135deg, #00e5ff, #9d50bb);
+  @apply text-white font-black border-none rounded-lg cursor-pointer transition-all duration-200 active:scale-95;
+}
+
+.gradient-button-gold:hover {
+  @apply opacity-90 -translate-y-0.5 shadow-xl shadow-primary/20;
+}
+
+.font-headline {
+  @apply font-black tracking-tight;
+}
+
+.section-badge {
+  @apply bg-primary/10 text-primary font-black px-3 py-1 rounded-full uppercase tracking-widest text-[10px];
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 rounded-full;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+}
+
+.devanagari {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+/* Fix for Light Mode visibility in inputs */
+input, textarea, select {
+  @apply bg-background text-foreground border-border;
+}
+
+.dark input, .dark textarea, .dark select {
+  @apply bg-zinc-900/50 text-white border-white/10;
+}

@@ -1,0 +1,44 @@
+
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the OmniTools AI platform.",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "name": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "phone": { "type": "string" },
+        "photoURL": { "type": "string" }
+      },
+      "required": ["id", "email", "name", "createdAt", "role"]
+    },
+    "ToolStats": {
+      "title": "Tool Stats",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "href": { "type": "string" },
+        "clicks": { "type": "number" },
+        "lastUsed": { "type": "string", "format": "date-time" }
+      }
+    }
+  },
+  "auth": {
+    "providers": ["password", "phone", "facebook.com", "google.com"]
+  },
+  "firestore": {
+    "/users/{userId}": {
+        "schema": { "$ref": "#/backend/entities/User" },
+        "description": "User profiles. Public access for counting in MVP."
+    },
+    "/toolStats/{toolId}": {
+        "schema": { "$ref": "#/backend/entities/ToolStats" },
+        "description": "Tracks usage of each tool to determine featured items."
+    }
+  }
+}

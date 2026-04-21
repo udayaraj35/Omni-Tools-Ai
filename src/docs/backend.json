@@ -1,0 +1,246 @@
+
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the OmniTools AI platform.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the User entity. Corresponds to Firebase Auth UID."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp indicating when the user profile was created."
+        },
+        "promotionStartDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp indicating when the user's premium access started."
+        },
+        "promotionEndDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp indicating when the user's premium access expires."
+        },
+        "role": {
+          "type": "string",
+          "description": "User role, e.g., 'admin' or 'user'.",
+          "enum": ["admin", "user"]
+        },
+        "phone": { "type": "string", "description": "User's contact phone number." },
+        "dob": { "type": "string", "description": "User's date of birth.", "format": "date" },
+        "nationality": { "type": "string", "description": "User's nationality." },
+        "linkedin": { "type": "string", "description": "URL to user's LinkedIn profile.", "format": "uri" },
+        "facebook": { "type": "string", "description": "URL to user's Facebook profile.", "format": "uri" },
+        "whatsapp": { "type": "string", "description": "User's WhatsApp number." },
+        "currentJob": { "type": "string", "description": "User's current job title." },
+        "passportNumber": { "type": "string", "description": "User's passport number." },
+        "frequentFlyer": { "type": "string", "description": "User's frequent flyer number." },
+        "permanentStreetAddress": { "type": "string", "description": "User's permanent street address." },
+        "permanentCity": { "type": "string", "description": "User's permanent city." },
+        "permanentCountry": { "type": "string", "description": "User's permanent country." },
+        "permanentPostalCode": { "type": "string", "description": "User's permanent postal code." },
+        "currentStreetAddress": { "type": "string", "description": "User's current street address." },
+        "currentCity": { "type": "string", "description": "User's current city." },
+        "currentCountry": { "type": "string", "description": "User's current country." },
+        "currentPostalCode": { "type": "string", "description": "User's postal code for their current address." },
+        "bloodGroup": {
+          "type": "string",
+          "description": "User's blood group (e.g., O+, A-).",
+          "enum": ["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]
+        },
+        "gender": {
+          "type": "string",
+          "description": "User's gender.",
+          "enum": ["Male", "Female", "Other"]
+        },
+        "photoURL": { "type": "string", "description": "URL or Data URI of the user's profile picture." },
+        "placeOfBirth": { "type": "string", "description": "User's place of birth (city)." },
+        "countryOfBirth": { "type": "string", "description": "User's country of birth." },
+        "professionalSummary": { "type": "string", "description": "A professional summary for the user's profile." },
+        "skills": { "type": "array", "items": { "type": "string" }, "description": "A list of the user's skills." },
+        "motherLanguage": { "type": "string", "description": "The user's mother tongue." },
+        "experience": {
+            "type": "array",
+            "description": "The user's work experience history.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "jobTitle": { "type": "string" },
+                    "company": { "type": "string" },
+                    "city": { "type": "string" },
+                    "country": { "type": "string" },
+                    "startDate": { "type": "string" },
+                    "endDate": { "type": "string" },
+                    "isCurrent": { "type": "boolean" },
+                    "duties": { "type": "string" }
+                }
+            }
+        },
+        "education": {
+            "type": "array",
+            "description": "The user's education history.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "degree": { "type": "string" },
+                    "university": { "type": "string" },
+                    "city": { "type": "string" },
+                    "country": { "type": "string" },
+                    "startDate": { "type": "string" },
+                    "passingYear": { "type": "string" }
+                }
+            }
+        },
+        "training": {
+            "type": "array",
+            "description": "The user's training or certification history.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "title": { "type": "string" },
+                    "institution": { "type": "string" },
+                    "city": { "type": "string" },
+                    "country": { "type": "string" },
+                    "startDate": { "type": "string" },
+                    "endDate": { "type": "string" }
+                }
+            }
+        },
+        "languages": {
+            "type": "array",
+            "description": "Languages spoken by the user and their proficiency.",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "language": { "type": "string" },
+                    "listening": { "type": "string" },
+                    "reading": { "type": "string" },
+                    "spokenInteraction": { "type": "string" },
+                    "spokenProduction": { "type": "string" },
+                    "writing": { "type": "string" }
+                }
+            }
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "name",
+        "createdAt",
+        "role"
+      ]
+    },
+    "Document": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Document",
+      "type": "object",
+      "description": "Represents a user-generated document, such as a CV, cover letter, or enhanced photo.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the Document entity." },
+        "userId": { "type": "string", "description": "Reference to User. (Relationship: User 1:N Document)" },
+        "documentType": { "type": "string", "description": "Type of document (e.g., 'CV', 'Cover Letter', 'Enhanced Photo')." },
+        "toolId": { "type": "string", "description": "Identifier for the tool used to create it (e.g., 'europass-cv', 'normal-cv')." },
+        "title": { "type": "string", "description": "Title of the document." },
+        "content": { "type": "string", "description": "The final content of the document (HTML for CVs, data URI for images)." },
+        "formData": { "type": "object", "description": "The form data used to generate the document, allowing for future editing." },
+        "createdAt": { "type": "string", "description": "Timestamp indicating when the document was created.", "format": "date-time" }
+      },
+      "required": [ "id", "userId", "documentType", "title", "createdAt" ]
+    },
+    "NewsItem": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "News Item",
+      "type": "object",
+      "description": "Represents a news item, announcement, or advertisement for the scrolling ticker.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the item." },
+        "text": { "type": "string", "description": "The content of the news or ad." },
+        "imageUrl": { "type": "string", "description": "URL for an optional associated image." },
+        "status": { "type": "string", "enum": ["active", "inactive", "deleted"], "description": "The current status of the news item." },
+        "priority": { "type": "number", "description": "Display order priority (higher numbers shown first)." },
+        "type": { "type": "string", "enum": ["news", "ad", "update", "urgent"], "description": "The type of content." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp for when the item was created." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Timestamp for when the item was last updated." }
+      },
+      "required": ["id", "text", "status", "priority", "type", "createdAt", "updatedAt"]
+    },
+    "DummyTicketBooking": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Dummy Ticket Booking",
+      "type": "object",
+      "description": "Represents a dummy ticket booking for visa purposes.",
+      "properties": {
+        "id": { "type": "string" },
+        "pnr": { "type": "string", "description": "The Passenger Name Record for the booking." },
+        "userId": { "type": "string", "description": "The UID of the user who made the booking. Can be 'anonymous'." },
+        "tripType": { "type": "string", "enum": ["one-way", "return"] },
+        "fromAirport": { "type": "string", "description": "Departure airport code." },
+        "toAirport": { "type": "string", "description": "Arrival airport code." },
+        "departureDate": { "type": "string", "description": "Departure date." },
+        "returnDate": { "type": "string", "description": "Optional return date." },
+        "passengers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "firstName": { "type": "string" },
+              "lastName": { "type": "string" },
+              "dob": { "type": "string" },
+              "nationality": { "type": "string" },
+              "passportNumber": { "type": "string" },
+              "passportExpiry": { "type": "string" }
+            },
+             "required": ["firstName", "lastName", "dob", "nationality", "passportNumber", "passportExpiry"]
+          }
+        },
+        "contactEmail": { "type": "string", "format": "email" },
+        "contactPhone": { "type": "string" },
+        "totalPriceInAED": { "type": "number" },
+        "currency": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["pnr", "userId", "tripType", "fromAirport", "toAirport", "departureDate", "passengers", "contactEmail", "totalPriceInAED", "currency", "createdAt"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "phone",
+      "facebook.com",
+      "google.com"
+    ]
+  },
+  "firestore": {
+    "/users/{userId}": {
+        "schema": { "$ref": "#/entities/User" },
+        "description": "Stores user profiles. The `role` field determines admin privileges. Admins can manage premium access via promotion dates."
+    },
+    "/users/{userId}/documents/{documentId}": {
+        "schema": { "$ref": "#/entities/Document" },
+        "description": "Stores user-generated documents. Access is based on path-based ownership."
+    },
+    "/newsItems/{newsItemId}": {
+        "schema": { "$ref": "#/entities/NewsItem" },
+        "description": "Stores news and ads for the homepage ticker. Only readable by authenticated users."
+    },
+    "/dummyBookings/{bookingId}": {
+        "schema": { "$ref": "#/entities/DummyTicketBooking" },
+        "description": "Stores dummy flight ticket bookings made by users. Admins can search by PNR."
+    }
+  }
+}

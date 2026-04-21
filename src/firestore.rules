@@ -1,0 +1,64 @@
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // १. मास्टर एडमिन हेल्पर
+    function isMasterAdmin() {
+      return request.auth != null && request.auth.token.email == 'udayarajkhanal21@gmail.com';
+    }
+
+    // २. समाचार टिकर (newsItems)
+    match /newsItems/{newsItemId} {
+      allow read: if true;
+      allow write: if isMasterAdmin();
+    }
+
+    // ३. प्रयोगकर्ता प्रोफाइल (users)
+    // सार्वजनिक गणना (Total Users Count) को लागि सबैलाई पढ्न अनुमति दिइएको छ
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null && (request.auth.uid == userId || isMasterAdmin());
+
+      match /{allPaths=**} {
+        allow read, write: if request.auth != null && (request.auth.uid == userId || isMasterAdmin());
+      }
+    }
+
+    // ४. सिस्टम कन्फिग (System Config)
+    // सबैलाई पढ्न अनुमति दिइएको छ ताकि कन्ट्याक्ट र पेमेन्ट विवरणहरू देखियोस्
+    match /systemConfig/{configId} {
+      allow read: if true;
+      allow write: if isMasterAdmin();
+    }
+
+    // ५. डमी बुकिङ (dummyBookings)
+    match /dummyBookings/{bookingId} {
+      allow create: if true;
+      allow read: if request.auth != null && (resource.data.userId == request.auth.uid || isMasterAdmin());
+      allow update, delete: if isMasterAdmin();
+    }
+    
+    // ६. टुल प्रयोग तथ्याङ्क (toolStats) - अटोमेटिक ट्रेन्डिङको लागि
+    match /toolStats/{toolId} {
+        allow read: if true;
+        allow write: if true; 
+    }
+
+    // ७. अन्य हिस्टोरी र डेटा
+    match /humanizerHistory/{historyId} {
+        allow create: if true;
+        allow read, write: if request.auth != null && (resource.data.userId == request.auth.uid || isMasterAdmin());
+    }
+
+    match /teams/{teamId} {
+      allow read, write: if request.auth != null && (resource.data.ownerId == request.auth.uid || isMasterAdmin());
+    }
+
+    match /templates/{templateId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && (request.auth.uid == resource.data.creatorId || isMasterAdmin());
+    }
+  }
+}

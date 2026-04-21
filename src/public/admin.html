@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OmniTools AI Admin Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script>
+    /* -----------------------------------------
+       TWO-STEP ADMIN SECURITY (PIN + PASSWORD)
+       ----------------------------------------- */
+  
+    // Step 1: PIN Code (Only you know)
+    const ADMIN_PIN = "353535"; // Your PIN
+  
+    // Step 2: Username + Password
+    const ADMIN_USER = "Udayaraj";
+    const ADMIN_PASS = "Udayaraj35@";
+  
+    // Ask for PIN first
+    const pin = prompt("Enter Admin PIN Code:");
+  
+    if (pin !== ADMIN_PIN) {
+      alert("Incorrect PIN. Access denied.");
+      window.location.href = "/";
+    } else {
+      // PIN correct → Ask for username/password
+      const user = prompt("Enter Admin Username:");
+      const pass = prompt("Enter Admin Password:");
+  
+      if (user !== ADMIN_USER || pass !== ADMIN_PASS) {
+        alert("Invalid username or password.");
+        window.location.href = "/";
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --gold: #fbbf24;
+      --gold-strong: #f59e0b;
+      --bg-dark: #020617;
+      --card-bg: #020617;
+      --border: rgba(148, 163, 184, 0.45);
+      --radius: 12px;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1120, #020617);
+      color: #e5e9f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+      padding: 20px;
+      backdrop-filter: blur(18px);
+    }
+
+    .card-header {
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-shadow: 0 0 18px rgba(251, 191, 36, 0.9);
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #cbd5f5;
+    }
+
+    .input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e9f0;
+      font-size: 14px;
+      outline: none;
+      transition: 0.15s ease;
+    }
+
+    .input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.7);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      background: radial-gradient(circle at top, #fef3c7, var(--gold));
+      color: #111827;
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.85);
+      font-size: 14px;
+      transition: 0.16s ease;
+    }
+
+    .btn:hover {
+      background: radial-gradient(circle at top, #feeeb5, var(--gold-strong));
+      box-shadow: 0 0 24px rgba(251, 191, 36, 1);
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 0 12px rgba(251, 191, 36, 0.9);
+    }
+
+    .error {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #f97373;
+      min-height: 18px;
+    }
+
+    .hint {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    .admin-layout {
+      display: block;
+    }
+
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .admin-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .admin-badge {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9ca3af;
+    }
+
+    .logout-btn {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e9f0;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.15s ease;
+    }
+
+    .logout-btn:hover {
+      border-color: #f97373;
+      color: #fecaca;
+      box-shadow: 0 0 10px rgba(248, 113, 113, 0.6);
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .admin-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+    }
+
+    .admin-card h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .admin-card p {
+      margin: 0;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+
+    .admin-actions {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .small-btn {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e9f0;
+      font-size: 12px;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .small-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+    }
+
+    @media (min-width: 720px) {
+      .card {
+        padding: 26px 28px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- ADMIN PANEL LAYOUT -->
+    <div id="admin-layout" class="card admin-layout">
+      <div class="admin-header">
+        <div>
+          <div class="admin-title">OmniTools AI · Admin Panel</div>
+          <div class="admin-badge">FULL CONTROL · OWNER: UDAYA RAJ KHANAL</div>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="admin-card">
+          <h3>Website controls</h3>
+          <p>Manage main sections: home, tools, CV builder, footer, announcements.</p>
+          <div class="admin-actions">
+            <button class="small-btn">Open main site</button>
+            <button class="small-btn">Update footer content</button>
+            <button class="small-btn">Maintenance mode</button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Tools & features</h3>
+          <p>Turn tools on/off, set featured tools, manage experiments.</p>
+          <div class="admin-actions">
+            <button class="small-btn">Manage tools</button>
+            <button class="small-btn">Set featured tools</button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Backups & safety</h3>
+          <p>Keep latest code, design and configs in Google Drive / GitHub.</p>
+          <div class="admin-actions">
+            <button class="small-btn">Open backup docs</button>
+            <button class="small-btn">View deployment notes</button>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <h3>Meta / notes</h3>
+          <p>Quick notes for future updates, releases and migration plans.</p>
+          <div class="admin-actions">
+            <button class="small-btn">Add update note</button>
+            <button class="small-btn">View roadmap</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

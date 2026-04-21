@@ -1,0 +1,25 @@
+import { config } from 'dotenv';
+config();
+
+import '@/ai/flows/index.ts';
+import '@/ai/flows/generate-europass-cv.ts';
+import '@/ai/flows/generate-cover-letter.ts';
+import '@/ai/flows/suggest-ai-tools.ts';
+import '@/ai/flows/generate-visa-cover-letter.ts';
+import '@/ai/flows/extract-doc-info.ts';
+import '@/ai/flows/generate-availability-status.ts';
+import '@/ai/flows/generate-omni-response.ts';
+import '@/ai/flows/generate-personal-assistant-response.ts';
+import '@/ai/flows/generate-social-content.ts';
+import '@/ai/flows/translate-text.ts';
+import '@/ai/flows/generate-image.ts';
+import '@/ai/flows/generate-story-post.ts';
+import '@/ai/flows/remove-background.ts';
+import '@/ai/flows/generate-story-flow.ts';
+import '@/ai/flows/generate-greeting-card.ts';
+import '@/ai/flows/generate-human-like-text.ts';
+import '@/ai/flows/change-dress.ts';
+import '@/ai/flows/generate-card-content.ts';
+import '@/ai/flows/invitation-studio-flow.ts';
+import '@/ai/flows/smart-fill-profile.ts';
+import '@/ai/flows/qr-studio-flow.ts';

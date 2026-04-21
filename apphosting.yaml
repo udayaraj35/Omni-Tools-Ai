@@ -1,0 +1,42 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+buildConfig:
+  command: "npm run build"
+
+# Higher resource allocation for Next.js 15 complex builds
+runConfig:
+  minInstances: 2
+  maxInstances: 100
+  concurrency: 100
+  cpu: 2
+  memoryMiB: 2048
+
+# Environment variables
+env:
+  - variable: ADMIN_GMAIL
+    value: "udayarajkhanal21@gmail.com"
+    availability:
+      - BUILD
+      - RUNTIME
+
+  - variable: ADMIN_GMAIL_APP_PASS
+    value: "fmvk weoy jbhy gbnc"
+    availability:
+      - RUNTIME
+
+  - variable: FIREBASE_ADMIN_KEY
+    value: >
+      {
+        "type": "service_account",
+        "project_id": "studio-3916554323-417f2",
+        "private_key_id": "08b1807ac071fd4fe3ec10180d2a967df258b380",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyT7t7DIS+keM9\nQSZRagU1iipZX9pzHCsdGJG15tnPMoxPIOs9Vx6NFIfF2XX6kOuIJYfRvqkFYa3n\ndBCsvCjqS9SITfudfPyIr6NsNI14JO8j0YvsMSgqEZolL0z7F3et/0ornSrU70aQ\nXPEEXhKYYRkB4YR7XLtcNgTOrGYyP6WBZTghMEFA1MtsLnmOB7GIcTqhoTcjmruX\nl+JJmukA/K/ml5W3oZ3fBhiRbci6FJ3uKVDxMPTWEYMvHjFGJJudYYVj7sB8u0SA\nBemKs6UF4r3+8I/MXocjAHpLHj593lo1YoMfvnXuqGfOtddVT/igSrRZkWaiVgtj\np7pWXHn9AgMBAAECggEAOAuVmwSBSMDkEuHCYH6Zao2l5/eX2ux0pK2PRwRrW5PA\nxDJNnjce1CsqzcYfLgWU8nMRcJyj1ZwxI/m4MALoPVReVgVk28hoO7IxBJa0DJpX\nTAPWHgQJYserkpp+cMGcjWUbc//vcYRPwppj6wKCh8ClMpEmqfuorEASXL+VU59l\nW7CI9AgMq1+po2u+3QjZUtnbxmwTY/0R/rtbINhOlIAGXzD6d5XMwsGnr9K9emxE\ncjO170UfR2GXT0OtnaEHe+iAiulXh5zoKuZ6xB//YES3bjs0WSz8lUx2vZnKN6dD\nGcbUTndowt5r4IVB5nnnNfN+5zzqzjafz11r6x9gxQKBgQDY/Svj1+69EJUwCaGi\n8BYvtL3RpQ8oAxWEedWeVOvhl/YmeXQH1wN0gzv0SBNT8C+c5bTlZieLyRDAfHZy\n81P5Qfnr3w3EnAnXes4IYdpExdMRFvGYhQ0LRz2c+ZIC5dK/ky9WZWGfN+TQoSQA\nX1BX2pEL19l5qiaYHCdND84AtwKBgQDSXnHeIM2uQFNt3GZbvwRuIfTSe4wPDToK\nMTdmKsBo/uJ8QzpgOSANcFcK4NFi6lvtWqAW8ojgFx7tNxLPcfajEPMyBxlAXiiZ\nQNa5JaIdpXu2wxo2fnf5xfMojjngSA3bRSEKooeZlAN/VG4BUXHUso2EO7o2Osr/\nB6hBIBa+6wKBgQCPQR2vz4hTE9aan1EyJDVRi47iEIngDaEwE8tfO4t7JXshzX84\nCdDDJDz5unfgK6sTd2elJ3smQzknC0ScAV9IKTGZcmpBig7JTs8lI40ZaE0/dBlO\na1DASGk58F5gQWCQj9hpvobjud/7iNce085UIf0uh3ORai8Or0+XBb8oIwKBgFlk\nqsxychSO3yT7GD/6Xt6R7WAYAf9PZo94NItktVionwOg6ciD3dv4FfTYbgGzhxbI\ngOjfbUyUZp703ThrvBu1EzL6Ez/oAyaEh/orRMWGUZjrNVNc0IzCEj70mSF2XPUF\nXjIPuMGJRScxcIF843s32K0NWGa8+w/+aAAsq527AoGALHCzJkUE0sk+5OWFlRm/\nT0uRF5xc6LmlfQuVn/JoZfCF6ZMKYqdKYY5YcAHwtl8yF0NmeRP3MHguxTFsrAQl\HgW8MAw0hpXZ5WS1jl56kEYi31tzOKTSVH4L/nCbRFungTJmzYiqQymFCN7VymG4\nBilWTqks8s6vLiKbtYf6oRw=\n-----END PRIVATE KEY-----\n",
+        "client_email": "firebase-adminsdk-fbsvc@studio-3916554323-417f2.iam.gserviceaccount.com",
+        "client_id": "116323375219780158903",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/official/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40studio-3916554323-417f2.iam.gserviceaccount.com",
+        "universe_domain": "googleapis.com"
+      }
+    availability:
+      - RUNTIME

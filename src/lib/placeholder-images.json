@@ -1,0 +1,28 @@
+{
+  "placeholderImages": [
+    {
+      "id": "europass_cv_sample",
+      "description": "A sample of a Europass CV.",
+      "imageUrl": "https://i.imgur.com/vId6xU9.png",
+      "imageHint": "Europass resume"
+    },
+    {
+      "id": "normal_cv_sample",
+      "description": "A sample of a normal, modern CV.",
+      "imageUrl": "https://i.imgur.com/dRVZrfF.png",
+      "imageHint": "modern resume"
+    },
+    {
+      "id": "ats_cv_sample",
+      "description": "A sample of an ATS-friendly CV.",
+      "imageUrl": "https://i.imgur.com/DbWXEsv.png",
+      "imageHint": "ATS resume"
+    },
+    {
+      "id": "plane_3d",
+      "description": "A 3D rendered airplane in the sky.",
+      "imageUrl": "https://images.unsplash.com/photo-1628126304595-b0499b6f3938?q=80&w=1470&auto=format&fit=crop",
+      "imageHint": "3D airplane"
+    }
+  ]
+}
