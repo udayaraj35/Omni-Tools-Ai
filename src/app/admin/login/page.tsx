@@ -4,6 +4,8 @@
 import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  GoogleAuthProvider,
+  signInWithPopup,
   type User as FirebaseUser,
 } from 'firebase/auth';
 import { useAuth, useUser } from '@/firebase';
@@ -56,6 +58,22 @@ export default function AdminLoginPage() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true);
+    setErrorMsg(null);
+    try {
+        const provider = new GoogleAuthProvider();
+        const userCredential = await signInWithPopup(auth, provider);
+        await handleAuthSuccess(userCredential.user);
+    } catch (error: any) {
+        console.error("handleGoogleSignIn error:", error);
+        setErrorMsg(error.message);
+        toast({ variant: "destructive", title: "Login Failed", description: error.message });
+    } finally {
+        setIsLoading(false);
+    }
+  };
+  
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -142,6 +160,17 @@ export default function AdminLoginPage() {
                         )}
                     </Button>
                 </form>
+                <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                        <span className="w-full border-t border-zinc-800" />
+                    </div>
+                    <div className="relative flex justify-center text-[10px] uppercase font-bold tracking-widest text-zinc-500">
+                        <span className="bg-[#0B1020] px-2">Or continue with</span>
+                    </div>
+                </div>
+                <Button variant="outline" onClick={handleGoogleSignIn} disabled={isLoading} className="w-full h-14 bg-black/40 border-zinc-800 hover:bg-zinc-800 text-white font-bold tracking-widest">
+                    SIGN IN WITH GOOGLE
+                </Button>
             </CardContent>
             <CardFooter className="flex justify-between items-center text-sm border-t border-white/5 pt-6">
                 <Link href="/" className="text-zinc-500 hover:text-primary transition-colors flex items-center gap-1">
