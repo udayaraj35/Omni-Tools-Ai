@@ -2,7 +2,6 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  output: "standalone",
   /* config options here */
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -92,6 +91,7 @@ const nextConfig: NextConfig = {
       bodySizeLimit: '50mb',
       serverActionsTimeout: 120, // Increase timeout to 2 minutes
     },
+    cpus: 1,
   },
   eslint: {
     ignoreDuringBuilds: true,
